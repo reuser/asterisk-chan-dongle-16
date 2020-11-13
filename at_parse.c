@@ -269,6 +269,25 @@ EXPORT_DEF int at_parse_cmti (const char* str)
 	return sscanf (str, "+CMTI: %*[^,],%u", &index) == 1 ? index : -1;
 }
 
+/*!
+ * \brief Parse a CDSI notification
+ * \param str -- string to parse (null terminated)
+ * \param len -- string lenght
+ * @note str will be modified when the CDSI message is parsed
+ * \return -1 on error (parse error) or the index of the new sms message
+ */
+
+EXPORT_DEF int at_parse_cdsi (const char* str)
+{
+	int index;
+
+	/*
+	 * parse cdsi info in the following format:
+	 * +CDSI: <mem>,<index>
+	 */
+
+	return sscanf (str, "+CDSI: %*[^,],%u", &index) == 1 ? index : -1;
+}
 
 static const char * parse_cmgr_text(char ** str, size_t len, char * oa, size_t oa_len, str_encoding_t * oa_enc, char ** msg, str_encoding_t * msg_enc)
 {

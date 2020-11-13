@@ -45,6 +45,7 @@ static const at_response_t at_responses_list[] = {
 	{ RES_CMGR, "+CMGR",DEF_STR("+CMGR:") },
 	{ RES_CMS_ERROR, "+CMS ERROR",DEF_STR("+CMS ERROR:") },
 	{ RES_CMTI, "+CMTI",DEF_STR("+CMTI:") },
+	{ RES_CDSI, "+CDSI",DEF_STR("+CDSI:") },
 	{ RES_CNUM, "+CNUM",DEF_STR("+CNUM:") },		/* and "ERROR+CNUM:" */
 
 	{ RES_CONF,"^CONF",DEF_STR("^CONF:") },
@@ -1815,6 +1816,9 @@ int at_response (struct pvt* pvt, const struct iovec iov[2], int iovcnt, at_res_
 				return at_response_clip (pvt, str, len);
 */
 			case RES_CMTI:
+				return at_response_cmti (pvt, str);
+
+			case RES_CDSI:
 				return at_response_cmti (pvt, str);
 
 			case RES_CMGR:
